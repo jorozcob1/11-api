@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Asegura que el navbar sea fijo en la parte superior */
+
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+
+/* Ajustes para pantallas pequeñas */
+
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .nav-links a {
+        padding: 0.5rem;
+    }
+}
+
+
+/* Cambio de estilo al hacer scroll */
+
+body.scrolled .navbar {
+    background-color: #222;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #575757;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #350d0d;
+    align-items: center;
+    justify-content: center;
+}

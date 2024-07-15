@@ -1,0 +1,14 @@
+<section>
+    @for (item of data; track $index) {
+    <div class="card">
+        <h2>{{ item.strDrink }}</h2>
+        <h3>Categoria: {{ item.strCategory }}</h3>
+        <hr />
+        <p>{{ item.strInstructions }}</p>
+        <li>{{ item.strIngredient1 }}</li>
+        <li>{{ item.strIngredient2 }}</li>
+        <img src="{{ item.strDrinkThumb }}" alt="{{ item.strDrink }}" />
+    </div>
+
+    }
+</section>
