@@ -12,10 +12,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class VinoComponent {
   data: any[] = [];
+  selectedDrink: any = null;
   constructor(private vinoService: VinoService) {}
   ngOnInit(): void {
     this.vinoService.obtenerVino().subscribe((datos) => {
       this.data = datos.drinks;
     });
+  }
+
+  verDetalles(drink: any): void {
+    this.selectedDrink = drink;
   }
 }

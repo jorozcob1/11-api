@@ -12,11 +12,15 @@ import { VodkaService } from '../services/vodka.service';
 })
 export class VodkaComponent {
   data: any[] = [];
+  selectedDrink: any = null;
   constructor(private vodkaService: VodkaService) {}
 
   ngOnInit(): void {
     this.vodkaService.obtenerVodka().subscribe((datos) => {
       this.data = datos.drinks;
     });
+  }
+  verDetalles(drink: any): void {
+    this.selectedDrink = drink;
   }
 }

@@ -1,14 +1,80 @@
-<section>
+<section class="container mx-auto px-4 py-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     @for (item of data; track $index) {
-    <div class="card">
-        <h2>{{ item.strDrink }}</h2>
-        <h3>Categoria: {{ item.strCategory }}</h3>
-        <hr />
-        <p>{{ item.strInstructions }}</p>
-        <li>{{ item.strIngredient1 }}</li>
-        <li>{{ item.strIngredient2 }}</li>
-        <img src="{{ item.strDrinkThumb }}" alt="{{ item.strDrink }}" />
+    <div
+      class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105"
+    >
+      <img
+        [src]="item.strDrinkThumb"
+        [alt]="item.strDrink"
+        class="w-full h-48 object-cover"
+      />
+      <div class="p-6">
+        <h2 class="text-2xl font-bold mb-2 text-gray-800">
+          {{ item.strDrink }}
+        </h2>
+        <h3 class="text-sm font-semibold text-gray-600 mb-4">
+          Categoría: {{ item.strCategory }}
+        </h3>
+        <hr class="mb-4" />
+        <p class="text-gray-700 mb-4 line-clamp-3">
+          {{ item.strInstructions }}
+        </p>
+        <div class="mb-4">
+          <h4 class="font-semibold text-gray-800 mb-2">Ingredientes:</h4>
+          <ul class="list-disc list-inside text-gray-600">
+            @if (item.strIngredient1) {
+            <li>{{ item.strIngredient1 }}</li>
+            } @if (item.strIngredient2) {
+            <li>{{ item.strIngredient2 }}</li>
+            }
+          </ul>
+        </div>
+        <button
+          (click)="verDetalles(item)"
+          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+        >
+          Ver Detalles
+        </button>
+      </div>
     </div>
-
     }
+  </div>
 </section>
+
+@if (selectedDrink) {
+<div
+  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+>
+  <div class="bg-white p-8 rounded-lg max-w-2xl w-full">
+    <h2 class="text-3xl font-bold mb-4">{{ selectedDrink.strDrink }}</h2>
+    <img
+      [src]="selectedDrink.strDrinkThumb"
+      [alt]="selectedDrink.strDrink"
+      class="w-full h-64 object-cover mb-4 rounded"
+    />
+    <p class="mb-4">
+      <strong>Categoría:</strong> {{ selectedDrink.strCategory }}
+    </p>
+    <p class="mb-4">
+      <strong>Instrucciones:</strong> {{ selectedDrink.strInstructions }}
+    </p>
+    <h3 class="font-bold mb-2">Ingredientes:</h3>
+    <ul class="list-disc list-inside mb-4">
+      @for (i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]; track i) { @if
+      (selectedDrink['strIngredient' + i]) {
+      <li>
+        {{ selectedDrink["strIngredient" + i] }} -
+        {{ selectedDrink["strMeasure" + i] }}
+      </li>
+      } }
+    </ul>
+    <button
+      (click)="selectedDrink = null"
+      class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+    >
+      Cerrar
+    </button>
+  </div>
+</div>
+}
